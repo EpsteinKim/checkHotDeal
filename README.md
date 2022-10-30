@@ -5,3 +5,4 @@ npm install
 
 if you wanna make exe?
 npm install => checkChroniumPath => checkHotDeal.js => modify executablePath
+and pkg checkHotDeal.js
