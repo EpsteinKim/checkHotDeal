@@ -1,7 +1,8 @@
 const puppeteer = require('puppeteer')
 const WHITESPACE = '●'
 const os = require('os')
-const executablePath = './build/win64-1036745/chrome-win/chrome.exe'
+const executablePath = ''
+// executablePath = './build/win64-1036745/chrome-win/chrome.exe'
 const readline = require("readline");
 const { stdin: input, stdout: output } = require('process');
 const { rejects } = require('assert');
@@ -42,7 +43,16 @@ async function askSearchString() {
 }
 
 async function search(searchString) {
-  browser = await puppeteer.launch({headless: false, executablePath, args: ['--window-size=1500,1000']})
+  const launchOption = {
+    headless: false,
+    args: ['--window-size=1500,1000'],
+  }
+
+  if (executablePath) {
+    launchOption['executablePath'] = executablePath
+  }
+
+  browser = await puppeteer.launch(launchOption)
     searchLotteOn(searchString)
     searchWeMakePrice(searchString)
     searchAuction(searchString)
